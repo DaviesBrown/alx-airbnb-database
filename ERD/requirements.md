@@ -1,5 +1,5 @@
-
 # Database Specification - AirBnB
+![Airbnb ER Diagram](./airbnb-schema.png)
 ## Entities and Attributes
 ### User
 **user_id**: Primary Key, UUID, Indexed  
