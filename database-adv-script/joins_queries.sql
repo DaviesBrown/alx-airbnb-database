@@ -26,7 +26,8 @@ SELECT
     r.comment
 FROM property p
 LEFT JOIN review r
-    ON p.property_id = r.property_id;
+    ON p.property_id = r.property_id
+ORDER BY r.rating DESC;
 
 
 -- FULL OUTER JOIN
