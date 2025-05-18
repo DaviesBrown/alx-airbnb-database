@@ -26,14 +26,14 @@
 -- ========================================================================
 
 -- Query 1: Find properties in a specific location within a price range
-EXPLAIN 
+EXPLAIN ANALYZE
 SELECT * FROM Property 
 WHERE location LIKE '%New York%' 
 AND pricepernight BETWEEN 100 AND 300
 ORDER BY pricepernight;
 
 -- Query 2: Find available properties for a date range
-EXPLAIN
+EXPLAIN ANALYZE
 SELECT p.* FROM Property p
 WHERE p.property_id NOT IN (
     SELECT b.property_id 
@@ -54,7 +54,7 @@ AND b.status = 'confirmed'
 ORDER BY b.start_date;
 
 -- Query 4: Find properties with top ratings
-EXPLAIN
+EXPLAIN ANALYZE
 SELECT p.*, AVG(r.rating) as avg_rating
 FROM Property p
 JOIN Review r ON p.property_id = r.property_id

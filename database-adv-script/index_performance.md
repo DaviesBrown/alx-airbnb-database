@@ -50,6 +50,14 @@ We created the following strategic indexes:
 
 ## Performance Improvements
 
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM Property 
+WHERE location LIKE '%New York%' 
+AND pricepernight BETWEEN 100 AND 300
+ORDER BY pricepernight;
+```
+
 ### Query 1: Property Search by Location and Price
 **Query:**
 ```sql
