@@ -11,10 +11,10 @@ LEFT JOIN
 LEFT JOIN 
     property p ON b.property_id = p.property_id
 LEFT JOIN 
-    payment py ON b.booking_id = py.booking_id;
-
+    payment py ON b.booking_id = py.booking_id
+WHERE b.status = 'confirmed' AND pay.status = 'completed';
 -- Check query performance
-EXPLAIN ANALYZE SELECT 
+EXPLAIN AN SELECT 
     b.*,
     u.user_id, u.first_name, u.last_name, u.email, u.phone_number, u.profile_picture,
     p.property_id, p.title, p.description, p.location, p.price_per_night, p.property_type, p.max_guests, p.bedrooms, p.bathrooms,
