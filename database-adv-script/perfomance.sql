@@ -14,7 +14,7 @@ LEFT JOIN
     payment py ON b.booking_id = py.booking_id;
 
 -- Check query performance
-EXPLAIN SELECT 
+EXPLAIN ANALYZE SELECT 
     b.*,
     u.user_id, u.first_name, u.last_name, u.email, u.phone_number, u.profile_picture,
     p.property_id, p.title, p.description, p.location, p.price_per_night, p.property_type, p.max_guests, p.bedrooms, p.bathrooms,
@@ -34,7 +34,7 @@ CREATE INDEX IF NOT EXISTS idx_booking_property ON booking(property_id);
 CREATE INDEX IF NOT EXISTS idx_payment_booking ON payment(booking_id);
 
 -- Refactored query - Selecting only necessary columns
-EXPLAIN SELECT 
+EXPLAIN ANALYZE SELECT 
     b.booking_id, b.check_in_date, b.check_out_date, b.status,
     u.first_name, u.last_name, u.email,
     p.title, p.location, p.price_per_night,
@@ -49,7 +49,7 @@ LEFT JOIN
     payment py ON b.booking_id = py.booking_id;
 
 -- Alternative approach - Using subqueries for lazy loading when only specific data is needed
-EXPLAIN SELECT 
+EXPLAIN ANALYZE SELECT 
     b.booking_id, b.check_in_date, b.check_out_date, b.status,
     (SELECT CONCAT(first_name, ' ', last_name) FROM user WHERE user_id = b.user_id) AS customer_name,
     (SELECT title FROM property WHERE property_id = b.property_id) AS property_name,
